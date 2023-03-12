@@ -7,7 +7,7 @@ inputs:
     required: false
   node-version:
     description: "Version of Node.js to use."
-    default: "v18"
+    default: "18"
     required: false
   pnpm-version:
     description: "Version of pnpm to use."
@@ -22,8 +22,15 @@ runs:
       with:
         fetch-depth: ${{ inputs.fetch-depth }}
 
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ inputs.node-version }}
+
     - name: Setup pnpm
       uses: pnpm/action-setup@v2
+      with:
+        version: ${{ inputs.pnpm-version }}
 
     - name: Expose pnpm Store Path
       id: pnpm-store-path
