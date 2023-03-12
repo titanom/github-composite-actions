@@ -55,7 +55,7 @@ runs:
     - name: Expose Turbo Cache Directory
       id: turbo-cache
       shell: bash
-      run: echo turbo-cache-directory=${{ inputs.turbo-cache-directory }} >> $GITHUB_OUTPUT
+      run: echo cache-directory=${{ inputs.turbo-cache-directory }} >> $GITHUB_OUTPUT
 
     - name: Setup Turbo Cache
       uses: actions/cache@v3
