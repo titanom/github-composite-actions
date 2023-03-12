@@ -1,0 +1,6 @@
+{
+  "name": "test-1",
+  "scripts": {
+    "build": "rm -rf dist && mkdir dist && echo test >> dist/test"
+  }
+}
