@@ -53,6 +53,7 @@ runs:
         key: ${{ runner.os }}-pnpm-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
 
     - name: Expose Turbo Cache Directory
+      id: turbo-cache
       shell: bash
       run: echo turbo-cache-directory=${{ inputs.turbo-cache-directory }} >> $GITHUB_OUTPUT
 
