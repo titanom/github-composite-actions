@@ -21,7 +21,7 @@ inputs:
 outputs:
   turbo-cache-dir:
     description: "Cache directoy of turbo artefacts."
-    value: ${{ steps.turbo-cache.outputs.cache-dir }}
+    value: ${{ steps.turbo-cache.outputs.cache-directory }}
 
 runs:
   using: "composite"
