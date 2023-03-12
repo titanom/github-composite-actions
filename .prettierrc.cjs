@@ -1,1 +1,1 @@
-module.exports = require('@titanom/prettier-config')
+module.exports = require('@titanom/prettier-config');
