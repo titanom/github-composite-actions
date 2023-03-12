@@ -5,8 +5,12 @@ on: [push]
 jobs:
   test:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: turbo/setup/tests/default
     steps:
-      - uses: ../../turbo/setup
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+      - uses: ./turbo/setup
+        id: setup
+        with:
+          working-directory: ./turbo/setup/tests/default
+      - run: pnpm build --cache-dir=${{ steps.setup.outputs.turbo-cache-directory }}
+        working-directory: ./turbo/setup/tests/default
