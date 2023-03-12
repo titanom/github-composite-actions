@@ -14,6 +14,11 @@ inputs:
     default: "7"
     required: false
 
+outputs:
+  turbo-cache-dir:
+    description: "Cache directoy of turbo artefacts."
+    value: ${{ steps.turbo-cache.outputs.cache-dir }}
+
 runs:
   using: "composite"
   steps:
@@ -35,13 +40,22 @@ runs:
     - name: Expose pnpm Store Path
       id: pnpm-store-path
       shell: bash
-      run: echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
+      run: echo "store-path=$(pnpm store path)" >> $GITHUB_OUTPUT
 
     - name: Setup pnpm Cache
       uses: actions/cache@v3
       with:
-        path: ${{ steps.pnpm-store-path.outputs.STORE_PATH }}
+        path: ${{ steps.pnpm-store-path.outputs.store-path }}
         key: ${{ runner.os }}-pnpm-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
+
+    - name: Setup Turbo Cache
+      id: turbo-cache
+      uses: actions/cache@v3
+      with:
+        path: ./.turbo-cache
+        key: ${{ runner.os }}-turbo-cache-${{ github.sha }}
+        restore-keys: ${{ runner.os }}-turbo-cache-
+      run: echo "cache-dir=./.turbo-cache" >> $GITHUB_OUTPUT
 
     - name: Install Dependencies
       shell: bash
