@@ -14,11 +14,11 @@ inputs:
     default: "7"
     required: false
   turbo-cache-directory:
-    description: "Cache directoy for Turbo."
+    description: "Cache directoy for Turbo. Must not contain a leading '/'."
     default: ".turbo-cache"
     required: false
   working-directory:
-    description: "Directory in which the action is run."
+    description: "Directory in which the action is run. Must not contain a trailing '/'."
     default: "."
     required: false
 
