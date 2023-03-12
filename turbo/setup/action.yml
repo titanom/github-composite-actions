@@ -1,34 +1,34 @@
-name: "Setup"
-description: "Setup a repo using turbo & pnpm."
+name: 'Setup'
+description: 'Setup a repo using turbo & pnpm.'
 
 inputs:
   fetch-depth:
     default: 1
     required: false
   node-version:
-    description: "Version of Node.js to use."
-    default: "18"
+    description: 'Version of Node.js to use.'
+    default: '18'
     required: false
   pnpm-version:
-    description: "Version of pnpm to use."
-    default: "7"
+    description: 'Version of pnpm to use.'
+    default: '7'
     required: false
   turbo-cache-directory:
     description: "Cache directoy for Turbo. Must not contain a leading '/'."
-    default: ".turbo-cache"
+    default: '.turbo-cache'
     required: false
   working-directory:
     description: "Directory in which the action is run. Must not contain a trailing '/'."
-    default: "."
+    default: '.'
     required: false
 
 outputs:
   turbo-cache-directory:
-    description: "Cache directoy of turbo artefacts."
+    description: 'Cache directoy of turbo artefacts.'
     value: ${{ steps.turbo-cache.outputs.cache-directory }}
 
 runs:
-  using: "composite"
+  using: 'composite'
   steps:
     - name: Checkout Repository
       uses: actions/checkout@v3
