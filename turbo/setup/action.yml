@@ -15,11 +15,15 @@ inputs:
     required: false
   turbo-cache-directory:
     description: "Cache directoy for Turbo."
-    default: "./.turbo-cache"
+    default: ".turbo-cache"
+    required: false
+  working-directory:
+    description: "Directory in which the action is run."
+    default: "."
     required: false
 
 outputs:
-  turbo-cache-dir:
+  turbo-cache-directory:
     description: "Cache directoy of turbo artefacts."
     value: ${{ steps.turbo-cache.outputs.cache-directory }}
 
@@ -60,10 +64,11 @@ runs:
     - name: Setup Turbo Cache
       uses: actions/cache@v3
       with:
-        path: ${{ inputs.turbo-cache-directory }}
+        path: ${{ inputs.working-directory }}/${{ inputs.turbo-cache-directory }}
         key: ${{ runner.os }}-turbo-cache-${{ github.sha }}
         restore-keys: ${{ runner.os }}-turbo-cache-
 
     - name: Install Dependencies
       shell: bash
+      working-directory: ${{ inputs.working-directory }}
       run: pnpm install --frozen-lockfile --prefer-offline
