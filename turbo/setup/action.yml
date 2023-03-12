@@ -45,4 +45,4 @@ runs:
 
     - name: Install Dependencies
       shell: bash
-      run: pnpm install --forzen-lockfile --prefer-offline
+      run: pnpm install --frozen-lockfile --prefer-offline
