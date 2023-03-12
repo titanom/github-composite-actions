@@ -58,7 +58,6 @@ runs:
       run: echo turbo-cache-directory=${{ inputs.turbo-cache-directory }} >> $GITHUB_OUTPUT
 
     - name: Setup Turbo Cache
-      id: turbo-cache
       uses: actions/cache@v3
       with:
         path: ${{ inputs.turbo-cache-directory }}
