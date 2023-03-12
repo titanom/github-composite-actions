@@ -1,0 +1,11 @@
+{
+  "name": "github-composite-actions",
+  "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "devDependencies": {
+    "@titanom/prettier-config": "^1.0.2",
+    "prettier": "^2.8.4"
+  }
+}
