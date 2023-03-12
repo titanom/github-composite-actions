@@ -13,6 +13,10 @@ inputs:
     description: "Version of pnpm to use."
     default: "7"
     required: false
+  turbo-cache-directory:
+    description: "Cache directoy for Turbo."
+    default: "./.turbo-cache"
+    required: false
 
 outputs:
   turbo-cache-dir:
@@ -48,14 +52,16 @@ runs:
         path: ${{ steps.pnpm-store-path.outputs.store-path }}
         key: ${{ runner.os }}-pnpm-cache-${{ hashFiles('**/pnpm-lock.yaml') }}
 
+    - name: Expose Turbo Cache Directory
+      run: echo turbo-cache-directory=${{ inputs.turbo-cache-directory }} >> $GITHUB_OUTPUT
+
     - name: Setup Turbo Cache
       id: turbo-cache
       uses: actions/cache@v3
       with:
-        path: ./.turbo-cache
+        path: ${{ inputs.turbo-cache-directory }}
         key: ${{ runner.os }}-turbo-cache-${{ github.sha }}
         restore-keys: ${{ runner.os }}-turbo-cache-
-      run: echo "cache-dir=./.turbo-cache" >> $GITHUB_OUTPUT
 
     - name: Install Dependencies
       shell: bash
