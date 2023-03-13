@@ -1,6 +1,6 @@
 name: Test Composite Actions
 
-on: [push]
+on: [push, workflow_dispatch]
 
 jobs:
   turbo-setup-default:
