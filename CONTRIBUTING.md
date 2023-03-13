@@ -2,13 +2,24 @@
 
 ## Prerequisites
 
-1. Install [act](https://github.com/nektos/act#installation) to run GitHub Actions locally
+1. Node.js v18
+2. pnpm
+3. [act](https://github.com/nektos/act#installation) to run GitHub Actions locally
+
+## Formatting
+
+```
+pnpm format
+
+# or to check if code is formatted correctly
+pnpm format:check
+```
 
 ## Test Actions Locally
 
 ```shell
-act
+act [<event>] [options]
 
 # or if installed as GitHub CLI extension
-gh act
+gh act [<event>] [options]
 ```
