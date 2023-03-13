@@ -3,8 +3,12 @@ name: Check Repository
 on: [push, workflow_dispatch]
 
 jobs:
-  turbo-setup-default:
+  check:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+
       - uses: ./turbo/setup
+
       - run: pnpm format:check
