@@ -3,14 +3,28 @@ name: Test Composite Actions
 on: [push]
 
 jobs:
-  test:
+  turbo-setup-default:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
+
       - uses: ./turbo/setup
         id: setup
         with:
           working-directory: ./tests/turbo/setup/default
       - run: pnpm build --cache-dir=${{ steps.setup.outputs.turbo-cache-directory }}
         working-directory: ./tests/turbo/setup/default
+
+      - name: Test
+        shell: bash
+        run: |
+          if [ -f ./tests/turbo/setup/default/packages/test-1/dist/test ]; then
+            echo "resolution=PASS" >> $GITHUB_ENV
+          else
+            echo "resolution=FAIL" >> $GITHUB_ENV
+          fi
+
+      - name: Fail if resolution is set to 'FAIL'
+        if: env.resolution == 'FAIL'
+        run: exit 1
