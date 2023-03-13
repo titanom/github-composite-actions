@@ -8,4 +8,7 @@
 
 ```shell
 act
+
+# or if installed as GitHub CLI extension
+gh act
 ```

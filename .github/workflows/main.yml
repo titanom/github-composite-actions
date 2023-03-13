@@ -11,6 +11,6 @@ jobs:
       - uses: ./turbo/setup
         id: setup
         with:
-          working-directory: ./turbo/setup/tests/default
+          working-directory: ./tests/turbo/setup/default
       - run: pnpm build --cache-dir=${{ steps.setup.outputs.turbo-cache-directory }}
-        working-directory: ./turbo/setup/tests/default
+        working-directory: ./tests/turbo/setup/default
