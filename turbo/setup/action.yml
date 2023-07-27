@@ -15,7 +15,7 @@ inputs:
     required: false
   turbo-cache-directory:
     description: "Cache directoy for Turbo. Must not contain a leading '/'."
-    default: '.turbo-cache'
+    default: 'node_modules/.cache/turbo'
     required: false
   working-directory:
     description: "Directory in which the action is run. Must not contain a trailing '/'."
