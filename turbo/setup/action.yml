@@ -11,7 +11,7 @@ inputs:
     required: false
   pnpm-version:
     description: 'Version of pnpm to use.'
-    default: '7'
+    default: '8'
     required: false
   turbo-cache-directory:
     description: "Cache directoy for Turbo. Must not contain a leading '/'."
